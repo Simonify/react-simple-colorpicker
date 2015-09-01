@@ -42,8 +42,5 @@
     "grunt-env": "^0.4.1",
     "grunt-react": "^0.10.0",
     "reactify": "^0.17.1"
-  },
-  "peerDependencies": {
-    "react": ">=0.13.0 <0.15.0 || 0.14.0-beta1 || 0.14.0-beta2 || 0.14.0-beta3"
   }
 }

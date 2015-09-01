@@ -7,11 +7,6 @@ module.exports = function(grunt) {
 
     pkg: grunt.file.readJSON("package.json"),
 
-    paths : {
-      entry  : "example/app.js",
-      output : "example/dist/js/bundle.js"
-    },
-
     env : {
       dev : {
         NODE_ENV : "development"
@@ -34,6 +29,11 @@ module.exports = function(grunt) {
       }
     },
 
+    paths: {
+      entry: './lib/index',
+      output: './pkg/index'
+    },
+
     browserify: {
       options: {
         transform: [
@@ -41,30 +41,9 @@ module.exports = function(grunt) {
           "envify"
         ]
       },
-      dev: {
-        src  : "<%= paths.entry %>",
-        dest : "<%= paths.output %>",
-        options : {
-          watch : true,
-          bundleOptions : {
-            debug : true,
-          }
-        }
-      },
       dist : {
         src  : "<%= paths.entry %>",
         dest : "<%= paths.output %>"
-      }
-    },
-
-    sass : {
-      example : {
-        options : {
-          style : "compressed",
-          noCache : true
-        },
-        src : "example/screen.scss",
-        dest : "example/dist/css/screen.css"
       }
     },
 
@@ -76,19 +55,7 @@ module.exports = function(grunt) {
         dest: 'pkg',
         ext: '.js'
       }
-    },
-
-    watch : {
-      styles : {
-        files : ["<%= sass.example.src %>"],
-        tasks : ["sass"]
-      },
-      lib : {
-        files : ["lib"],
-        tasks : ["react"]
-      }
     }
-
   });
 
   grunt.loadNpmTasks("grunt-browserify");
@@ -98,7 +65,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-react");
 
-  grunt.registerTask("default", ["env:dev", "browserify:dev", "watch"]);
-  grunt.registerTask("dist", ["env:dist", "react", "browserify:dist", "sass", "uglify:dist"]);
-  
+  grunt.registerTask("dist", ["env:dist", "react", "browserify:dist", "uglify:dist"]);
+
 };
