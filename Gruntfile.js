@@ -30,8 +30,8 @@ module.exports = function(grunt) {
     },
 
     paths: {
-      entry: './lib/index',
-      output: './pkg/index'
+      entry: './lib/index.js',
+      output: './pkg/index.js'
     },
 
     browserify: {
